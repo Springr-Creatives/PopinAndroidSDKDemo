@@ -27,7 +27,7 @@
         </activity>
         <meta-data
             android:name="to.popin.androidsdk.POPIN_TOKEN"
-            android:value="51" />
+            android:value="11583" />
 
         <activity
             android:name="to.popin.androidsdk.call.CallActivity"
