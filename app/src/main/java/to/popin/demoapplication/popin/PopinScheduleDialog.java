@@ -22,6 +22,7 @@ import java.util.List;
 import to.popin.androidsdk.models.ScheduleSlotsModel;
 import to.popin.demoapplication.R;
 
+
 public class PopinScheduleDialog extends Dialog {
 
     private List<ScheduleSlotsModel.ScheduleSlot> scheduleSlots;

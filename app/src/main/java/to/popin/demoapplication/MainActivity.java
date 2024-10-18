@@ -5,17 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
-import java.util.List;
-
 import to.popin.androidsdk.Popin;
-import to.popin.androidsdk.PopinCreateScheduleListener;
 import to.popin.androidsdk.PopinEventsListener;
-import to.popin.androidsdk.PopinScheduleListener;
-import to.popin.androidsdk.models.ScheduleSlotsModel;
 import to.popin.demoapplication.popin.PopinConnectingDialog;
-import to.popin.demoapplication.popin.PopinScheduleDialog;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,8 +22,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 PopinConnectingDialog cdd=new PopinConnectingDialog(MainActivity.this);
                 cdd.show();
+
                 Popin.init(MainActivity.this);
-                Popin.getInstance().startConnection(new PopinEventsListener() {
+                Popin.getInstance().startCall(new PopinEventsListener() {
 
                     @Override
                     public void onCallStart() {
@@ -39,14 +33,23 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
+                    public void onQueuePositionChanged(int i) {
+
+                    }
+
+                    @Override
                     public void onAllExpertsBusy() {
                         cdd.dismiss();
-                        showSchedule();
                     }
 
                     @Override
                     public void onCallConnected() {
 
+                    }
+
+                    @Override
+                    public void onCallFailed() {
+                        cdd.dismiss();
                     }
 
                     @Override
@@ -60,32 +63,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void showSchedule() {
 
-        Popin.getInstance().getAvailableScheduleSlots(new PopinScheduleListener() {
-            @Override
-            public void onAvailableScheduleLoaded(List<ScheduleSlotsModel.ScheduleSlot> scheduleSlots) {
-                PopinScheduleDialog cdd = new PopinScheduleDialog(MainActivity.this, scheduleSlots, scheduletext ->
-                        Popin.getInstance().createSchedule(scheduletext, new PopinCreateScheduleListener() {
-                            @Override
-                            public void onScheduleCreated() {
-                                Toast.makeText(MainActivity.this,"Your call has been scheduled", Toast.LENGTH_LONG).show();
-                            }
-
-                            @Override
-                            public void onScheduleLoadError() {
-
-                            }
-                        }));
-
-                cdd.show();
-            }
-
-            @Override
-            public void onScheduleLoadError() {
-
-            }
-        });
-    }
 
 }
