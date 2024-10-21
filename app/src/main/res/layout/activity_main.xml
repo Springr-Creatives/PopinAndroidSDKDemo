@@ -1,19 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    >
 
-    <Button
-        android:id="@+id/buttonCall"
+    <!-- Chair Image -->
+    <ImageView
+        android:id="@+id/chair_image"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/chair"
+        />
+
+    <!-- Chair Title -->
+    <TextView
+        android:id="@+id/chair_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Ergonomic Office Chair"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/chair_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Chair Description -->
+    <TextView
+        android:id="@+id/chair_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="This ergonomic office chair provides superior comfort and lumbar support. With adjustable height and armrests, it's perfect for long hours of work or study."
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/chair_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Price -->
+    <TextView
+        android:id="@+id/chair_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Popin Call"
-        android:paddingHorizontal="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="$199.99"
+        android:textSize="18sp"
+        android:textColor="@android:color/holo_red_dark"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/chair_description"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Add to Cart Button -->
+    <Button
+        android:id="@+id/btn_add_to_cart"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Add to Cart"
+        android:backgroundTint="@color/purple_500"
+        android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/btn_buy_now"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCall"
+        android:layout_margin="8dp" />
+
+    <!-- Buy Now Button -->
+    <Button
+        android:id="@+id/btn_buy_now"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Buy Now"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toEndOf="@+id/btn_add_to_cart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCall"
+        android:layout_margin="8dp" />
+
+    <!-- Live Shop Button -->
+    <Button
+        android:id="@+id/buttonCall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Live Shop"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="8dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Popin.init(MainActivity.this);
         Button buttonCall = findViewById(R.id.buttonCall);
         buttonCall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -23,13 +24,12 @@ public class MainActivity extends AppCompatActivity {
                 PopinConnectingDialog cdd=new PopinConnectingDialog(MainActivity.this);
                 cdd.show();
 
-                Popin.init(MainActivity.this);
+
+
                 Popin.getInstance().startCall(new PopinEventsListener() {
 
                     @Override
                     public void onCallStart() {
-                       cdd.dismiss();
-
                     }
 
                     @Override
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onCallConnected() {
-
+                        cdd.dismiss();
                     }
 
                     @Override
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onCallDisconnected() {
-                        cdd.dismiss();
+
                     }
 
 
