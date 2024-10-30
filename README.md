@@ -27,6 +27,23 @@ First, ensure that your project has the correct dependency for the `PopinAndroid
    }
    ```
 
+3. Update your AndroidManifest.xml with
+
+   ```xml
+   <meta-data
+            android:name="to.popin.androidsdk.POPIN_TOKEN"
+            android:value="<your_token_here>" />
+
+        <activity
+            android:name="to.popin.androidsdk.call.CallActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:showWhenLocked="true"
+            android:supportsPictureInPicture="true" />
+   ```
+
 ## **Step 2: Initialize PopinAndroidSDK**
 
 Once the SDK is added, initialize the Popin service in your activity. This is typically done in the `onCreate` method of your main activity.
