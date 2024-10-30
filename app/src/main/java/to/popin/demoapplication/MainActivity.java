@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Popin.init(MainActivity.this);
+        Popin.init(MainActivity.this, "test_user", "9876543210");
         Button buttonCall = findViewById(R.id.buttonCall);
         buttonCall.setOnClickListener(new View.OnClickListener() {
             @Override
