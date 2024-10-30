@@ -32,7 +32,7 @@ First, ensure that your project has the correct dependency for the `PopinAndroid
 Once the SDK is added, initialize the Popin service in your activity. This is typically done in the `onCreate` method of your main activity.
 
 ```java
-Popin.init(MainActivity.this);
+Popin.init(MainActivity.this,"test_user", "9876543210");
 ```
 
 This method prepares the SDK to handle video calls.
