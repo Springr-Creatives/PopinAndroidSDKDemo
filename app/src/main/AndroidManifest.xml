@@ -27,16 +27,8 @@
         </activity>
         <meta-data
             android:name="to.popin.androidsdk.POPIN_TOKEN"
-            android:value="11506" />
+            android:value="51" />
 
-        <activity
-            android:name="to.popin.androidsdk.call.CallActivity"
-            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden"
-            android:excludeFromRecents="true"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:showWhenLocked="true"
-            android:supportsPictureInPicture="true" />
     </application>
 
 </manifest>
