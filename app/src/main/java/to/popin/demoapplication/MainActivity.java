@@ -24,16 +24,7 @@ public class MainActivity extends AppCompatActivity {
         buttonCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PopinConnectingDialog cdd = new PopinConnectingDialog(MainActivity.this);
-                cdd.show();
 
-                cdd.setOnDismissListener(dialogInterface -> {
-                    if (!callCancelled) {
-                    Popin.getInstance().cancelCall();
-                    }
-                });
-
-                callCancelled = false;
 
                 Popin.getInstance().startCall(new PopinEventsListener() {
 
@@ -49,19 +40,19 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onAllExpertsBusy() {
                         callCancelled = true;
-                        cdd.dismiss();
+
                     }
 
                     @Override
                     public void onCallConnected() {
                         callCancelled = true;
-                        cdd.dismiss();
+
                     }
 
                     @Override
                     public void onCallFailed() {
                         callCancelled = true;
-                        cdd.dismiss();
+
                     }
 
                     @Override
