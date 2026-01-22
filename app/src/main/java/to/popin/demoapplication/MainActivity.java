@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import to.popin.androidsdk.Popin;
 import to.popin.androidsdk.PopinEventsListener;
+import to.popin.androidsdk.PopinInitListener;
 import to.popin.demoapplication.popin.PopinConnectingDialog;
 
 
@@ -19,7 +20,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Popin.init(MainActivity.this, "vijith_kk", "9876543210");
+        Popin.init(MainActivity.this, "vijith_kk", "9876543210", true, new PopinInitListener() {
+            @Override
+            public void onInitComplete() {
+
+            }
+
+            @Override
+            public void onInitFailed(String s) {
+
+            }
+        });
         Button buttonCall = findViewById(R.id.buttonCall);
         buttonCall.setOnClickListener(new View.OnClickListener() {
             @Override
