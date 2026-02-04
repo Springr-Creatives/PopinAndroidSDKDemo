@@ -66,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
             Popin.init(MainActivity.this, config);
 
         });
+
+        findViewById(R.id.btn_test_crash).setOnClickListener(view -> {
+            throw new RuntimeException("Test Crash"); // Force a crash
+        });
     }
 
     private void startCall() {
