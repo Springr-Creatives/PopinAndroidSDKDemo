@@ -12,8 +12,8 @@ import java.util.Map;
 
 import to.popin.androidsdk.Popin;
 import to.popin.androidsdk.PopinConfig;
-import to.popin.androidsdk.PopinEventsListener;
-import to.popin.androidsdk.PopinInitListener;
+import to.popin.androidsdk.listeners.PopinEventsListener;
+import to.popin.androidsdk.listeners.PopinInitListener;
 import to.popin.androidsdk.models.Product;
 
 
