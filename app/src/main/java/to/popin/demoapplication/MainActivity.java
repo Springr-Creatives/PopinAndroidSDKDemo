@@ -14,8 +14,8 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 import to.popin.androidsdk.Popin;
 import to.popin.androidsdk.PopinConfig;
-import to.popin.androidsdk.PopinEventsListener;
-import to.popin.androidsdk.PopinInitListener;
+import to.popin.androidsdk.listeners.PopinEventsListener;
+import to.popin.androidsdk.listeners.PopinInitListener;
 import to.popin.androidsdk.models.Product;
 
 
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("FCM_TOKEN", token);
         });
 
-        Popin.init(MainActivity.this, "vijith_kk", "9876543210");
+        Popin.init(MainActivity.this);
         Button buttonCall = findViewById(R.id.buttonCall);
         buttonCall.setOnClickListener(view -> {
 
