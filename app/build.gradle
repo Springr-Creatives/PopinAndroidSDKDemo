@@ -1,15 +1,16 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
     namespace 'to.popin.demoapplication'
-    compileSdk 36
+    compileSdk 35
 
     defaultConfig {
         applicationId "to.popin.demoapplication"
-        minSdk 26
+        minSdk 24
         targetSdk 35
         versionCode 1
         versionName "1.0"
@@ -24,8 +25,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 }
 
@@ -45,3 +46,4 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging'
     implementation 'com.google.firebase:firebase-analytics'
 }
+
