@@ -3,9 +3,13 @@ package to.popin.demoapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import to.popin.androidsdk.Popin;
 import to.popin.androidsdk.PopinEventsListener;
@@ -19,6 +23,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requestPermissions(
+                    new String[]{android.Manifest.permission.POST_NOTIFICATIONS},
+                    101
+            );
+        }
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnSuccessListener(token -> {
+                Log.d("FCM_TOKEN", token);
+        });
+
         Popin.init(MainActivity.this, "vijith_kk", "9876543210");
         Button buttonCall = findViewById(R.id.buttonCall);
         buttonCall.setOnClickListener(new View.OnClickListener() {
