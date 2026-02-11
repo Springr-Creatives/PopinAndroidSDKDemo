@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
 import java.util.Map;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 import to.popin.androidsdk.Popin;
 import to.popin.androidsdk.PopinConfig;
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         Product product = new Product("19165419981", "2014 Maruti Alto K10", "https://media.cars24.com/hello-ar/dev/uploads/no_bg/2a569f64-091d-11ef-bd33-02ede2007fbe/66348e7ea700c2a08dae1c10/1a471506-1017-4aef-b7f8-a72d04d585db/slot/11007286706-a3642ec2b7b841e69a47e257ea8a5324-Exterior-6.png", "https://stage-catalog-india-website.qac24svc.dev/buy-used-maruti-alto-k10-2014-cars-gurgaon-19165419981", "HR26**2266", "Petrol | Manual | 40562km | u20b97.5 lakh");
 
         PopinConfig config = new PopinConfig.Builder()
-                .userName("ashwin")
+                .userName("user_demo_app")
                 .contactInfo("9876543217")
                 .sandboxMode(true)
                 .hideDisconnectButton(false)
