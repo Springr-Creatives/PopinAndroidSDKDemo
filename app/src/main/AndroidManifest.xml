@@ -30,7 +30,7 @@
         </activity>
         <meta-data
             android:name="to.popin.androidsdk.POPIN_TOKEN"
-            android:value="11506" />
+            android:value="51" />
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">

@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .build();
+        Popin.init(this,config);
         Button buttonCall = findViewById(R.id.buttonCall);
         buttonCall.setOnClickListener(view -> {
             startCall();
