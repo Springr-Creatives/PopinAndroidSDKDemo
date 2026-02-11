@@ -19,13 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import to.popin.androidsdk.models.ScheduleSlotsModel;
+import to.popin.androidsdk.models.ScheduleSlot;
 import to.popin.demoapplication.R;
 
 
 public class PopinScheduleDialog extends Dialog {
 
-    private List<ScheduleSlotsModel.ScheduleSlot> scheduleSlots;
+    private List<ScheduleSlot> scheduleSlots;
     private String[] dateList, timeList;
     private Spinner spinnerDate, spinnerTime;
     private Button buttonClose, buttonSchedule;
@@ -33,7 +33,7 @@ public class PopinScheduleDialog extends Dialog {
     private String scheduleText = "";
     private PopinScheduleListener popinScheduleListener;
 
-    public PopinScheduleDialog(@NonNull Context context, List<ScheduleSlotsModel.ScheduleSlot> _scheduleSlots, PopinScheduleListener popinScheduleListener) {
+    public PopinScheduleDialog(@NonNull Context context, List<ScheduleSlot> _scheduleSlots, PopinScheduleListener popinScheduleListener) {
         super(context);
         this.context = context;
         this.scheduleSlots = _scheduleSlots;
@@ -54,7 +54,7 @@ public class PopinScheduleDialog extends Dialog {
         buttonClose = findViewById(R.id.buttonClose);
         buttonSchedule = findViewById(R.id.buttonSchedule);
         ArrayList<String> dateArrayList = new ArrayList<String>();
-        for (ScheduleSlotsModel.ScheduleSlot scheduleSlot : scheduleSlots) {
+        for (ScheduleSlot scheduleSlot : scheduleSlots) {
             dateArrayList.add(scheduleSlot.date);
         }
 

@@ -33,53 +33,45 @@ public class MainActivity extends AppCompatActivity {
             );
         }
 
-        FirebaseMessaging.getInstance().getToken()
-                .addOnSuccessListener(token -> {
-                Log.d("FCM_TOKEN", token);
-        });
+        Map<String, String> meta = new HashMap<>();
+        meta.put("businessUnit", "BUY");
+        meta.put("journey", "VIDEO_TEST_DRIVE");
+        meta.put("tenantId", "INDIA_VIDEO_PLATFORM");
+        meta.put("orderId", "DA7OYG");
+        meta.put("vehicleId", "19165419981");
 
-        Popin.init(MainActivity.this);
+        Product product = new Product("19165419981", "2014 Maruti Alto K10", "https://media.cars24.com/hello-ar/dev/uploads/no_bg/2a569f64-091d-11ef-bd33-02ede2007fbe/66348e7ea700c2a08dae1c10/1a471506-1017-4aef-b7f8-a72d04d585db/slot/11007286706-a3642ec2b7b841e69a47e257ea8a5324-Exterior-6.png", "https://stage-catalog-india-website.qac24svc.dev/buy-used-maruti-alto-k10-2014-cars-gurgaon-19165419981", "HR26**2266", "Petrol | Manual | 40562km | u20b97.5 lakh");
+
+        PopinConfig config = new PopinConfig.Builder()
+                .userName("ashwin")
+                .contactInfo("9876543217")
+                .sandboxMode(true)
+                .hideDisconnectButton(false)
+                .hideScreenShareButton(true)
+                .hideFlipCameraButton(false)
+                .hideMuteVideoButton(false)
+                .hideMuteAudioButton(false)
+                .hideBackButton(false)
+                .callerId("sdk_call_id")
+                .product(product)
+                .meta(meta)
+                .persistenceMode(false)
+                .enableIncomingCalls(true)
+                .initListener(new PopinInitListener() {
+                    @Override
+                    public void onInitComplete(int userId) {
+                        Log.d("POPIN", "SDK initialized, userId: " + userId);
+                    }
+
+                    @Override
+                    public void onInitFailed(String reason) {
+                        Log.e("INIT_FAILED", ">" + reason);
+                    }
+                })
+                .build();
         Button buttonCall = findViewById(R.id.buttonCall);
         buttonCall.setOnClickListener(view -> {
-
-            Map<String, String> meta = new HashMap<>();
-            meta.put("businessUnit", "BUY");
-            meta.put("journey", "VIDEO_TEST_DRIVE");
-            meta.put("tenantId", "INDIA_VIDEO_PLATFORM");
-            meta.put("orderId", "DA7OYG");
-            meta.put("vehicleId", "19165419981");
-
-            Product product = new Product("19165419981", "2014 Maruti Alto K10", "https://media.cars24.com/hello-ar/dev/uploads/no_bg/2a569f64-091d-11ef-bd33-02ede2007fbe/66348e7ea700c2a08dae1c10/1a471506-1017-4aef-b7f8-a72d04d585db/slot/11007286706-a3642ec2b7b841e69a47e257ea8a5324-Exterior-6.png", "https://stage-catalog-india-website.qac24svc.dev/buy-used-maruti-alto-k10-2014-cars-gurgaon-19165419981", "HR26**2266", "Petrol | Manual | 40562km | u20b97.5 lakh");
-
-            PopinConfig config = new PopinConfig.Builder()
-                    .userName("ashwin")
-                    .contactInfo("9876543217")
-                    .sandboxMode(true)
-                    .hideDisconnectButton(false)
-                    .hideScreenShareButton(true)
-                    .hideFlipCameraButton(false)
-                    .hideMuteVideoButton(false)
-                    .hideMuteAudioButton(false)
-                    .hideBackButton(false)
-                    .callerId("sdk_call_id")
-                    .product(product)
-                    .meta(meta)
-                    .persistenceMode(false)
-                    .initListener(new PopinInitListener() {
-                        @Override
-                        public void onInitComplete() {
-                            startCall();
-                        }
-
-                        @Override
-                        public void onInitFailed(String reason) {
-                            Log.e("INIT_FAILED", ">" + reason);
-                        }
-                    })
-                    .build();
-
-            Popin.init(MainActivity.this, config);
-
+            startCall();
         });
 
         findViewById(R.id.btn_test_crash).setOnClickListener(view -> {

@@ -26,6 +26,25 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:676967774222:android:8cdfa6db8e2cfc886d245f",
+        "android_client_info": {
+          "package_name": "to.popin.demo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpQQHPj_0DU5s_rjVc2PzQQlqw4DFCtuo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:676967774222:android:040f83bc937cef336d245f",
         "android_client_info": {
           "package_name": "to.popin.demoapplication"
