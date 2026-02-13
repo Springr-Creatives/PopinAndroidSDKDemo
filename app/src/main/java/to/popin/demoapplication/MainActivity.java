@@ -71,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
         Popin.init(this,config);
         Button buttonCall = findViewById(R.id.buttonCall);
         buttonCall.setOnClickListener(view -> {
+            PopinConfig newConfig = Popin.getInstance().getConfig();
+            Map<String, String> meta2 = new HashMap<>();
+            meta.put("item", "set_before_call");
+            newConfig.setCallerId("new_caller_id");
+            newConfig.setMeta(meta2);
             startCall();
         });
 
