@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 .userName("user_demo_app")
                 .contactInfo("9876543217")
                 .sandboxMode(true)
+                .debugMode(true)
                 .hideDisconnectButton(false)
                 .hideScreenShareButton(true)
                 .hideFlipCameraButton(false)
