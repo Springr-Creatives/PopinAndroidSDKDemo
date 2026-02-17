@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
                 .meta(meta)
                 .persistenceMode(false)
                 .enableIncomingCalls(true)
+                .expertDesignation("Car expert")
+                .secondaryProductText("Car details")
                 .initListener(new PopinInitListener() {
                     @Override
                     public void onInitComplete(int userId) {
