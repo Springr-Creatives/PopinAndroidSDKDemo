@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 .debugMode(true)
                 .hideDisconnectButton(false)
                 .hideScreenShareButton(true)
-                .hideFlipCameraButton(false)
+                .hideFlipCameraButton(true)
                 .hideMuteVideoButton(false)
                 .hideMuteAudioButton(false)
                 .hideBackButton(false)
