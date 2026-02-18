@@ -4,6 +4,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,8 @@ import to.popin.androidsdk.models.Product;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private TextView tvEvents;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +88,19 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_test_crash).setOnClickListener(view -> {
             throw new RuntimeException("Test Crash"); // Force a crash
         });
+
+        tvEvents = findViewById(R.id.tvEvents);
+
+        findViewById(R.id.btnClearLogs).setOnClickListener(v -> tvEvents.setText(""));
+
+    }
+
+    private void logEvent(String message) {
+        runOnUiThread(() -> {
+            String time = new java.text.SimpleDateFormat("HH:mm:ss",
+                    java.util.Locale.getDefault()).format(new java.util.Date());
+            tvEvents.append("[" + time + "] " + message + "\n");
+        });
     }
 
     private void startCall() {
@@ -92,51 +108,61 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPermissionGiven() {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3p: PERMISSION GIVEN", Toast.LENGTH_SHORT).show());
+                logEvent("Permission given");
             }
 
             @Override
             public void onPermissionDenied() {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3p: PERMISSION DENIED", Toast.LENGTH_SHORT).show());
+                logEvent("Permission denied");
             }
 
             @Override
             public void onCallStart() {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3P: CALL_START", Toast.LENGTH_SHORT).show());
+                logEvent("Call started");
             }
 
             @Override
             public void onCallCancel() {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3p: CALL_CANCEL", Toast.LENGTH_SHORT).show());
+                logEvent("Call abandoned");
             }
 
             @Override
             public void onQueuePositionChanged(int position) {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3P: QUEUE POSITION >" + position, Toast.LENGTH_SHORT).show());
+                logEvent("Queue position: " + position);
             }
 
             @Override
             public void onCallMissed() {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3P: CALL_MISSED", Toast.LENGTH_SHORT).show());
+                logEvent("Call missed");
             }
 
             @Override
             public void onCallNetworkFailure() {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3P: CALL_NETWORK_FAILURE", Toast.LENGTH_SHORT).show());
+                logEvent("Network failure");
             }
 
             @Override
             public void onCallConnected() {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3P: CALL_CONNECTED", Toast.LENGTH_SHORT).show());
+                logEvent("Call connected");
             }
 
             @Override
             public void onCallFailed() {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3P: CALL_FAILED", Toast.LENGTH_SHORT).show());
+                logEvent("Call failed");
             }
 
             @Override
             public void onCallEnd() {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3P: CALL_END", Toast.LENGTH_SHORT).show());
+                logEvent("Call ended");
             }
         });
     }

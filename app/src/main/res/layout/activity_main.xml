@@ -1,121 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:fillViewport="true">
 
-    <!-- Chair Image -->
-    <ImageView
-        android:id="@+id/chair_image"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="56dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/chair"
-        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <!-- Chair Title -->
-    <TextView
-        android:id="@+id/chair_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Ergonomic Office Chair"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/chair_image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <!-- Chair Image -->
+        <ImageView
+            android:id="@+id/chair_image"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="56dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/chair"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Chair Description -->
-    <TextView
-        android:id="@+id/chair_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="This ergonomic office chair provides superior comfort and lumbar support. With adjustable height and armrests, it's perfect for long hours of work or study."
-        android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/chair_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <!-- Chair Title -->
+        <TextView
+            android:id="@+id/chair_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Ergonomic Office Chair"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chair_image" />
 
-    <!-- Price -->
-    <TextView
-        android:id="@+id/chair_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="$199.99"
-        android:textSize="18sp"
-        android:textColor="@android:color/holo_red_dark"
-        android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/chair_description"
-        app:layout_constraintStart_toStartOf="parent" />
+        <!-- Chair Description -->
+        <TextView
+            android:id="@+id/chair_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="This ergonomic office chair provides superior comfort and lumbar support. With adjustable height and armrests, it's perfect for long hours of work or study."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chair_title" />
 
-    <!-- Add to Cart Button -->
-    <Button
-        android:id="@+id/btn_add_to_cart"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Add to Cart"
-        android:backgroundTint="@color/purple_500"
-        android:textColor="@android:color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_buy_now"
-        app:layout_constraintBottom_toTopOf="@+id/buttonCall"
-        android:layout_margin="8dp" />
+        <!-- Price -->
+        <TextView
+            android:id="@+id/chair_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="$199.99"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chair_description" />
 
-    <!-- Buy Now Button -->
-    <Button
-        android:id="@+id/btn_buy_now"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Buy Now"
-        android:backgroundTint="@android:color/holo_red_dark"
-        android:textColor="@android:color/white"
-        app:layout_constraintStart_toEndOf="@+id/btn_add_to_cart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/buttonCall"
-        android:layout_margin="8dp" />
+        <!-- Add to Cart Button -->
+        <Button
+            android:id="@+id/btn_add_to_cart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/purple_500"
+            android:text="Add to Cart"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toStartOf="@+id/btn_buy_now"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chair_price" />
 
-    <!-- Live Shop Button -->
-    <Button
-        android:id="@+id/buttonCall"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Live Shop"
-        android:backgroundTint="@android:color/holo_blue_dark"
-        android:textColor="@android:color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginBottom="70dp"
-        />
+        <!-- Buy Now Button -->
+        <Button
+            android:id="@+id/btn_buy_now"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:text="Buy Now"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_add_to_cart"
+            app:layout_constraintTop_toBottomOf="@+id/chair_price" />
 
-    <Button
-        android:id="@+id/buttonReset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="RESET Customer"
-        app:layout_constraintBottom_toTopOf="@+id/btn_add_to_cart"
-        app:layout_constraintStart_toStartOf="parent" />
+        <!-- Live Shop Button -->
+        <Button
+            android:id="@+id/buttonCall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:backgroundTint="@android:color/holo_blue_dark"
+            android:text="Live Shop"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_add_to_cart" />
 
-    <Button
-        android:id="@+id/btn_test_crash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Test Crash"
-        android:backgroundTint="@android:color/darker_gray"
-        app:layout_constraintBottom_toTopOf="@+id/btn_buy_now"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <!-- Reset + Test Crash row -->
+        <Button
+            android:id="@+id/buttonReset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="RESET Customer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonCall" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btn_test_crash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="@android:color/darker_gray"
+            android:text="Test Crash"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonCall" />
+
+        <!-- ── Events Log Card ── -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardEvents"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardBackgroundColor="#1E1E1E"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonReset">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <!-- Header row: "Events" label + Clear button -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Events"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnClearLogs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:paddingHorizontal="12dp"
+                        android:text="Clear"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:backgroundTint="#444444"
+                        style="@style/Widget.MaterialComponents.Button.TextButton" />
+                </LinearLayout>
+
+                <!-- Log output -->
+                <TextView
+                    android:id="@+id/tvEvents"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:textColor="#E0E0E0"
+                    android:textSize="12sp"
+                    android:lineSpacingExtra="4dp"
+                    tools:text="[17:37:47] Init complete&#10;[17:37:51] Call started" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- bottom padding spacer -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/cardEvents"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
