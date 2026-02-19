@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void logEvent(String message) {
+    private void logEvent(String tag, String message) {
         runOnUiThread(() -> {
             String time = new java.text.SimpleDateFormat("HH:mm:ss",
                     java.util.Locale.getDefault()).format(new java.util.Date());
@@ -108,61 +108,68 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPermissionGiven() {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3p: PERMISSION GIVEN", Toast.LENGTH_SHORT).show());
-                logEvent("Permission given");
+                logEvent("EVENT", "Permission given");
             }
 
             @Override
             public void onPermissionDenied() {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3p: PERMISSION DENIED", Toast.LENGTH_SHORT).show());
-                logEvent("Permission denied");
+                logEvent("EVENT", "Permission denied");
             }
 
             @Override
             public void onCallStart() {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3P: CALL_START", Toast.LENGTH_SHORT).show());
-                logEvent("Call started");
+                logEvent("EVENT", "Call started");
             }
 
             @Override
             public void onCallCancel() {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3p: CALL_CANCEL", Toast.LENGTH_SHORT).show());
-                logEvent("Call abandoned");
+                logEvent("EVENT", "Call abandoned");
             }
 
             @Override
             public void onQueuePositionChanged(int position) {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3P: QUEUE POSITION >" + position, Toast.LENGTH_SHORT).show());
-                logEvent("Queue position: " + position);
+                logEvent("EVENT", "Queue position: " + position);
             }
 
             @Override
             public void onCallMissed() {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3P: CALL_MISSED", Toast.LENGTH_SHORT).show());
-                logEvent("Call missed");
+                logEvent("EVENT", "Call missed");
             }
 
             @Override
             public void onCallNetworkFailure() {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3P: CALL_NETWORK_FAILURE", Toast.LENGTH_SHORT).show());
-                logEvent("Network failure");
+                logEvent("EVENT", "Network failure");
             }
 
             @Override
             public void onCallConnected() {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3P: CALL_CONNECTED", Toast.LENGTH_SHORT).show());
-                logEvent("Call connected");
+                logEvent("EVENT", "Call connected");
             }
 
             @Override
             public void onCallFailed() {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3P: CALL_FAILED", Toast.LENGTH_SHORT).show());
-                logEvent("Call failed");
+                logEvent("EVENT", "Call failed");
             }
 
             @Override
             public void onCallEnd() {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3P: CALL_END", Toast.LENGTH_SHORT).show());
-                logEvent("Call ended");
+                logEvent("EVENT", "Call ended");
+            }
+
+            @Override
+            public void onCallNetworkFailure(String participant) {
+                logEvent("EVENT", "🔴 onCallNetworkFailure | participant=" + participant);
+                runOnUiThread(() -> Toast.makeText(MainActivity.this,
+                        "NETWORK FAILURE: " + participant, Toast.LENGTH_SHORT).show());
             }
         });
     }
