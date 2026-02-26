@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Logout button — deinit SDK, clear SharedPrefs, go to LoginActivity
         findViewById(R.id.buttonReset).setOnClickListener(view -> {
-            Popin.deinit(this);
+            Popin.deinit();
             prefs.edit().clear().apply();
             startActivity(new Intent(this, LoginActivity.class));
             finish();
@@ -164,12 +164,6 @@ public class MainActivity extends AppCompatActivity {
             public void onCallMissed() {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3P: CALL_MISSED", Toast.LENGTH_SHORT).show());
                 logEvent("EVENT", "Call missed");
-            }
-
-            @Override
-            public void onCallNetworkFailure() {
-                runOnUiThread(() -> Toast.makeText(MainActivity.this, "3P: CALL_NETWORK_FAILURE", Toast.LENGTH_SHORT).show());
-                logEvent("EVENT", "Network failure");
             }
 
             @Override
