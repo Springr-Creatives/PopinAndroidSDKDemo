@@ -1,5 +1,7 @@
 package to.popin.demoapplication;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +28,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Check if user is logged in
+        SharedPreferences prefs = getSharedPreferences(LoginActivity.PREFS_NAME, MODE_PRIVATE);
+        String userName = prefs.getString(LoginActivity.KEY_USER_NAME, null);
+        String contactInfo = prefs.getString(LoginActivity.KEY_CONTACT_INFO, null);
+
+        if (userName == null || contactInfo == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return;
+        }
+
         setContentView(R.layout.activity_main);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -45,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
         Product product = new Product("19165419981", "2014 Maruti Alto K10", "https://media.cars24.com/hello-ar/dev/uploads/no_bg/2a569f64-091d-11ef-bd33-02ede2007fbe/66348e7ea700c2a08dae1c10/1a471506-1017-4aef-b7f8-a72d04d585db/slot/11007286706-a3642ec2b7b841e69a47e257ea8a5324-Exterior-6.png", "https://stage-catalog-india-website.qac24svc.dev/buy-used-maruti-alto-k10-2014-cars-gurgaon-19165419981", "HR26**2266", "Petrol | Manual | 40562km | u20b97.5 lakh");
 
         PopinConfig config = new PopinConfig.Builder()
-                .userName("user_demo_app")
-                .contactInfo("9876543217")
+                .userName(userName)
+                .contactInfo(contactInfo)
                 .sandboxMode(true)
                 .debugMode(true)
                 .hideDisconnectButton(false)
@@ -66,15 +80,18 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onInitComplete(int userId) {
                         Log.d("POPIN", "SDK initialized, userId: " + userId);
+                        logEvent("INIT", "SDK initialized, userId: " + userId);
                     }
 
                     @Override
                     public void onInitFailed(String reason) {
                         Log.e("INIT_FAILED", ">" + reason);
+                        logEvent("INIT", "Init failed: " + reason);
                     }
                 })
                 .build();
-        Popin.init(this,config);
+        Popin.init(this, config);
+
         Button buttonCall = findViewById(R.id.buttonCall);
         buttonCall.setOnClickListener(view -> {
             PopinConfig newConfig = Popin.getInstance().getConfig();
@@ -83,6 +100,14 @@ public class MainActivity extends AppCompatActivity {
             newConfig.setCallerId("new_caller_id");
             newConfig.setMeta(meta2);
             startCall();
+        });
+
+        // Logout button — deinit SDK, clear SharedPrefs, go to LoginActivity
+        findViewById(R.id.buttonReset).setOnClickListener(view -> {
+            Popin.deinit(this);
+            prefs.edit().clear().apply();
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
         });
 
         findViewById(R.id.btn_test_crash).setOnClickListener(view -> {
@@ -167,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCallNetworkFailure(String participant) {
-                logEvent("EVENT", "🔴 onCallNetworkFailure | participant=" + participant);
+                logEvent("EVENT", "onCallNetworkFailure | participant=" + participant);
                 runOnUiThread(() -> Toast.makeText(MainActivity.this,
                         "NETWORK FAILURE: " + participant, Toast.LENGTH_SHORT).show());
             }
