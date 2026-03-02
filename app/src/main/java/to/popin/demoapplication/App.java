@@ -23,18 +23,13 @@ public class App extends Application {
             return;
         }
 
-        SharedPreferences prefs = getSharedPreferences(LoginActivity.PREFS_NAME, MODE_PRIVATE);
+        initPopin(this);
+    }
+
+    public static void initPopin(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(LoginActivity.PREFS_NAME, MODE_PRIVATE);
         String userName = prefs.getString(LoginActivity.KEY_USER_NAME, null);
         String contactInfo = prefs.getString(LoginActivity.KEY_CONTACT_INFO, null);
-
-//        Map<String, String> meta = new HashMap<>();
-//        meta.put("businessUnit", "BUY");
-//        meta.put("journey", "VIDEO_TEST_DRIVE");
-//        meta.put("tenantId", "INDIA_VIDEO_PLATFORM");
-//        meta.put("orderId", "DA7OYG");
-//        meta.put("vehicleId", "19165419981");
-
-       // Product product = new Product("19165419981", "2014 Maruti Alto K10", "https://media.cars24.com/hello-ar/dev/uploads/no_bg/2a569f64-091d-11ef-bd33-02ede2007fbe/66348e7ea700c2a08dae1c10/1a471506-1017-4aef-b7f8-a72d04d585db/slot/11007286706-a3642ec2b7b841e69a47e257ea8a5324-Exterior-6.png", "https://stage-catalog-india-website.qac24svc.dev/buy-used-maruti-alto-k10-2014-cars-gurgaon-19165419981", "HR26**2266", "Petrol | Manual | 40562km | u20b97.5 lakh");
 
         PopinConfig config = new PopinConfig.Builder()
                 .userName(userName)
@@ -48,9 +43,7 @@ public class App extends Application {
                 .hideMuteAudioButton(false)
                 .hideBackButton(false)
                 .callerId("sdk_caller_id")
-                //.product(product)
-                //.meta(meta)
-                .persistenceMode(false)
+                .persistenceMode(true)
                 .enableIncomingCalls(true)
                 .expertDesignation("Car expert")
                 .secondaryProductText("Car details")
@@ -66,7 +59,7 @@ public class App extends Application {
                     }
                 })
                 .build();
-        Popin.init(this, config);
+        Popin.init(context, config);
     }
 
     public static boolean isLoggedIn(Context context) {

@@ -52,6 +52,9 @@ public class LoginActivity extends AppCompatActivity {
                     .putString(KEY_CONTACT_INFO, phone)
                     .apply();
 
+            // Initialize SDK now that credentials are available
+            App.initPopin(getApplicationContext());
+
             startActivity(new Intent(this, MainActivity.class));
             finish();
         });
