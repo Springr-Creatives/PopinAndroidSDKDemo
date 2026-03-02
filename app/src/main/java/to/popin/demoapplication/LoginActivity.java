@@ -20,9 +20,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // If already logged in, go straight to MainActivity
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        if (prefs.getString(KEY_USER_NAME, null) != null) {
+        if (App.isLoggedIn(this)) {
             startActivity(new Intent(this, MainActivity.class));
             finish();
             return;
