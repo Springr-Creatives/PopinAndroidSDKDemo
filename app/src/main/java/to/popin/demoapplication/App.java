@@ -30,10 +30,16 @@ public class App extends Application {
         SharedPreferences prefs = context.getSharedPreferences(LoginActivity.PREFS_NAME, MODE_PRIVATE);
         String userName = prefs.getString(LoginActivity.KEY_USER_NAME, null);
         String contactInfo = prefs.getString(LoginActivity.KEY_CONTACT_INFO, null);
+        String identifier = prefs.getString(LoginActivity.KEY_IDENTIFIER, null);
 
-        PopinConfig config = new PopinConfig.Builder()
+        PopinConfig.Builder builder = new PopinConfig.Builder()
                 .userName(userName)
-                .contactInfo(contactInfo)
+                .contactInfo(contactInfo);
+        if (identifier != null) {
+            builder.identifier(identifier);
+        }
+
+        PopinConfig config = builder
                 .sandboxMode(true)
                 .debugMode(true)
                 .hideDisconnectButton(false)
