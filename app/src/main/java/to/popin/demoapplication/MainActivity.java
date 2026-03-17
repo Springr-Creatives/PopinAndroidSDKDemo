@@ -132,9 +132,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCallStart() {
-                runOnUiThread(() -> Toast.makeText(MainActivity.this, "3P: CALL_START", Toast.LENGTH_SHORT).show());
-                logEvent("EVENT", "Call started");
+            public void onCallStart(int callType) {
+                runOnUiThread(() -> Toast.makeText(MainActivity.this, "3P: CALL_START | type=" + callType, Toast.LENGTH_SHORT).show());
+                logEvent("EVENT", "Call started | type=" + callType);
             }
 
             @Override
