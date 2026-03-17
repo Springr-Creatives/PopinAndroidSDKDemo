@@ -66,9 +66,12 @@ public class MainActivity extends AppCompatActivity {
             finish();
         });
 
-        findViewById(R.id.btn_test_crash).setOnClickListener(view -> {
-            throw new RuntimeException("Test Crash"); // Force a crash
-        });
+        TextView tvSandbox = findViewById(R.id.tvSandboxMode);
+        boolean isSandbox = Popin.getInstance().getConfig().isSandboxMode();
+        tvSandbox.setText("Sandbox: " + (isSandbox ? "ON" : "OFF"));
+        tvSandbox.setTextColor(isSandbox
+                ? getResources().getColor(android.R.color.holo_orange_dark)
+                : getResources().getColor(android.R.color.holo_green_dark));
 
         tvEvents = findViewById(R.id.tvEvents);
 
