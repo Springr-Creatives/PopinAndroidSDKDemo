@@ -40,7 +40,7 @@ public class App extends Application {
         }
 
         PopinConfig config = builder
-                .sandboxMode(false)
+                .sandboxMode(true)
                 .debugMode(true)
                 .hideDisconnectButton(false)
                 .hideScreenShareButton(true)

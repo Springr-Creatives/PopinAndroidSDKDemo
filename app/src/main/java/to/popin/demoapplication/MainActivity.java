@@ -8,7 +8,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.text.InputType;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             meta2.put("item", "set_before_call");
             newConfig.setCallerId("new_caller_id");
             newConfig.setMeta(meta2);
-            startCall();
+            showUrlDialog();
         });
 
         // Logout button — deinit SDK, clear SharedPrefs, go to LoginActivity
@@ -79,8 +84,41 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void showUrlDialog() {
+        EditText input = new EditText(this);
+        input.setHint("Enter URL");
+        input.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
+
+        LinearLayout container = new LinearLayout(this);
+        container.setPadding(50, 30, 50, 0);
+        container.addView(input);
+
+        new AlertDialog.Builder(this)
+                .setTitle("Enter URL")
+                .setMessage("Enter a URL or skip to start without one")
+                .setView(container)
+                .setPositiveButton("OK", (dialog, which) -> {
+                    String url = input.getText().toString().trim();
+                    if (url.isEmpty()) {
+                        startCall();
+                    } else {
+                        startCall(url);
+                    }
+                })
+                .setNegativeButton("Skip", (dialog, which) -> startCall())
+                .show();
+    }
+
+    private void startCall(String url) {
+        Popin.getInstance().startCall(url, getEventsListener());
+    }
+
     private void startCall() {
-        Popin.getInstance().startCall(new PopinEventsListener() {
+        Popin.getInstance().startCall(getEventsListener());
+    }
+
+    private PopinEventsListener getEventsListener() {
+        return new PopinEventsListener() {
             @Override
             public void onPermissionGiven() {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3p: PERMISSION GIVEN", Toast.LENGTH_SHORT).show());
@@ -141,6 +179,6 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this,
                         "NETWORK FAILURE: " + participant, Toast.LENGTH_SHORT).show());
             }
-        });
+        };
     }
 }
