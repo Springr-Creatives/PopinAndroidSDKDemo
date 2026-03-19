@@ -39,9 +39,19 @@ public class App extends Application {
             builder.identifier(identifier);
         }
 
+        Product product = new Product(
+                "SKU-123",
+                "Sony WH-100XM5",
+                "https://www.sony.co.in/image/b4476ca635d3baa551e19ade7fad2c58?fmt=png-alpha",
+                "https://www.sony.co.in/electronics/headband-headphones/wh-1000xm5?sku=wh1000xm5-pmin",
+                "Additional Info",
+                "Description or Specs"
+        );
+
         PopinConfig config = builder
                 .sandboxMode(true)
                 .debugMode(true)
+                .product(product)
                 .hideDisconnectButton(false)
                 .hideScreenShareButton(true)
                 .hideFlipCameraButton(true)
