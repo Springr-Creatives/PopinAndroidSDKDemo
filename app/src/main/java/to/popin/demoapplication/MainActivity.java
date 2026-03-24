@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.btnClearLogs).setOnClickListener(v -> tvEvents.setText(""));
 
+        setupEventsListener();
     }
 
     private void logEvent(String tag, String message) {
@@ -113,15 +114,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startCall(String url) {
-        Popin.getInstance().startCall(url, getEventsListener());
+        Popin.getInstance().startCall(url);
     }
 
     private void startCall() {
-        Popin.getInstance().startCall(getEventsListener());
+        Popin.getInstance().startCall();
     }
 
-    private PopinEventsListener getEventsListener() {
-        return new PopinEventsListener() {
+    private void setupEventsListener() {
+        Popin.getInstance().setPopinEventsListener(new PopinEventsListener() {
             @Override
             public void onPermissionGiven() {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "3p: PERMISSION GIVEN", Toast.LENGTH_SHORT).show());
@@ -135,9 +136,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCallStart(int callType) {
-                runOnUiThread(() -> Toast.makeText(MainActivity.this, "3P: CALL_START | type=" + callType, Toast.LENGTH_SHORT).show());
-                logEvent("EVENT", "Call started | type=" + callType);
+            public void onCallStart(int callId) {
+                runOnUiThread(() -> Toast.makeText(MainActivity.this, "3P: CALL_START | callId=" + callId, Toast.LENGTH_SHORT).show());
+                logEvent("EVENT", "Call started | callId=" + callId);
             }
 
             @Override
@@ -182,6 +183,6 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this,
                         "NETWORK FAILURE: " + participant, Toast.LENGTH_SHORT).show());
             }
-        };
+        });
     }
 }
