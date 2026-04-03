@@ -12,6 +12,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import to.popin.androidsdk.Popin;
+import to.popin.androidsdk.listeners.PopinCallAcceptedListener;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
@@ -19,7 +20,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
 
-        if (Popin.onFcmMessageReceived(remoteMessage.getData())) {
+        if (Popin.onFcmMessageReceived(remoteMessage.getData(), new PopinCallAcceptedListener() {
+            @Override
+            public void onCallAccepted(int i) {
+                Log.e("CALL","ACCEPTED_LISTENER_FCM");
+            }
+        })) {
             return;
         }
     }
