@@ -19,13 +19,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-
-        if (Popin.onFcmMessageReceived(remoteMessage.getData(), new PopinCallAcceptedListener() {
-            @Override
-            public void onCallAccepted(int i) {
-                Log.e("CALL","ACCEPTED_LISTENER_FCM");
-            }
-        })) {
+        if (Popin.onFcmMessageReceived(remoteMessage.getData(), i -> Log.e("CALL","ACCEPTED_LISTENER_FCM"))) {
             return;
         }
     }

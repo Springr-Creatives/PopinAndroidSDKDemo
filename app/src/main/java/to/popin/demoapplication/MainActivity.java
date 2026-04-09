@@ -183,6 +183,12 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this,
                         "NETWORK FAILURE: " + participant, Toast.LENGTH_SHORT).show());
             }
+
+            @Override
+            public void onPipStateChanged(boolean isPipModeActive) {
+                runOnUiThread(() -> Toast.makeText(MainActivity.this, "3P: INPIPMODE: " + isPipModeActive, Toast.LENGTH_SHORT).show());
+                logEvent("EVENT", "PIP Mode> " + isPipModeActive);
+            }
         });
     }
 }
