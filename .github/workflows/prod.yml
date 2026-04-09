@@ -26,6 +26,10 @@ jobs:
           TMP_KEYSTORE_FILE_PATH="${RUNNER_TEMP}"/keystore
           mkdir "${TMP_KEYSTORE_FILE_PATH}"
           echo $ENCODED_STRING | base64 -di > "${TMP_KEYSTORE_FILE_PATH}"/popin.jks
+    - name: Set production POPIN_TOKEN and sandboxMode
+      run: |
+        sed -i '/to.popin.androidsdk.POPIN_TOKEN/{n;s|android:value="[^"]*"|android:value="11506"|;}' app/src/main/AndroidManifest.xml
+        sed -i 's|\.sandboxMode(true)|.sandboxMode(false)|' app/src/main/java/to/popin/demoapplication/App.java
     - name: Running linter
       run: ./gradlew lint
     - name: Make gradlew executable
@@ -49,7 +53,7 @@ jobs:
           slack_token: ${{ secrets.SLACK_BOT_TOKEN }}
           channel_id: C04M527K2FQ
           file_path: app/build/outputs/apk/debug/app-debug.apk
-          initial_comment: Production debug build for Popin-Seller-Android
+          initial_comment: Production debug build for Popin-AndroidSDK-Demo
     - name: Report Status
       if: always()
       uses: ravsamhq/notify-slack-action@v1
