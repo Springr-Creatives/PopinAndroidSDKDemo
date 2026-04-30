@@ -139,3 +139,10 @@ cdd.show();
 This ensures the user has visual feedback while the call is being connected.
 
 ---
+
+
+## License
+
+This is a closed-source project. The source code and assets are the exclusive property of Nowflow Technologies Private Limited and may not be used, reproduced, or distributed without explicit permission.
+
+© 2026 Nowflow Technologies Private Limited. All Rights Reserved.
