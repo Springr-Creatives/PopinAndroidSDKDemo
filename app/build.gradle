@@ -31,8 +31,8 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.Springr-Creatives.PopinAndroidSDK:PopinCustomerSDK:v3.0.8'
-    implementation 'com.github.Springr-Creatives.PopinAndroidSDK:PopinAgentSDK:v3.0.8'
+    implementation 'com.github.Springr-Creatives.PopinAndroidSDK:PopinCustomerSDK:v3.0.11'
+    implementation 'com.github.Springr-Creatives.PopinAndroidSDK:PopinAgentSDK:v3.0.11'
     implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'com.google.android.material:material:1.13.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
