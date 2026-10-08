@@ -7,10 +7,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v7
     - name: Set up JDK 17
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v6
       with:
         java-version: '17'
         distribution: 'temurin'
@@ -20,7 +19,7 @@ jobs:
       run: ./gradlew lint
     - name: Building debug
       run: ./gradlew app:assembleDebug
-    - uses: MeilCli/slack-upload-file@v3
+    - uses: MeilCli/slack-upload-file@v5
       with:
         slack_token: ${{ secrets.SLACK_BOT_TOKEN }}
         channel_id: C04M527K2FQ
@@ -28,7 +27,7 @@ jobs:
         initial_comment: Staging debug build for Popin-AndroidSDK-Demo
     - name: Report Status
       if: always()
-      uses: ravsamhq/notify-slack-action@v1
+      uses: ravsamhq/notify-slack-action@v2
       with:
         status: ${{ job.status }}
         notify_when: 'failure'
